@@ -16,4 +16,4 @@ export const env = {
 
 if (!env.jwtSecret || env.jwtSecret.length < 32) throw new Error('JWT_SECRET must be set and at least 32 characters long');
 if (!env.adminPassword || !env.staffPassword || !env.studentPassword) throw new Error('ADMIN_PASSWORD, STAFF_PASSWORD and STUDENT_PASSWORD must be set');
-if (mongoUri.includes('<') || mongoUri.includes('>')) throw new Error('MONGODB_URI still contains a placeholder. Replace <db_username> with the MongoDB database user name.');
+if (mongoUri.includes('<') || mongoUri.includes('>')) throw new Error('MONGODB_URI still contains a placeholder. Replace <db_password> with the MongoDB database password.');

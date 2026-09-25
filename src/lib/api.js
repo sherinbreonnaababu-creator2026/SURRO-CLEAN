@@ -1,4 +1,6 @@
-const API_URL = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000/api').replace(/\/$/, '');
+const API_URL = (
+  import.meta.env.VITE_API_URL || 'http://your-backend.onrender.com/api'
+).replace(/\/$/, '');
 
 export function getToken() {
   return localStorage.getItem('surroclean_token');
@@ -11,17 +13,43 @@ export function clearSession() {
 
 export async function apiFetch(path, options = {}) {
   const headers = new Headers(options.headers);
-  headers.set('Content-Type', 'application/json');
   const token = getToken();
-  if (token) headers.set('Authorization', `Bearer ${token}`);
 
-  const response = await fetch(`${API_URL}${path}`, { ...options, headers });
-  const body = await response.json().catch(() => ({}));
+  if (options.body != null && !headers.has('Content-Type')) {
+    headers.set('Content-Type', 'application/json');
+  }
+
+  if (token) {
+    headers.set('Authorization', `Bearer ${token}`);
+  }
+
+  let response;
+
+  try {
+    response = await fetch(`${API_URL}${path}`, {
+      ...options,
+      headers
+    });
+  } catch {
+    throw new Error('Unable to connect to the server');
+  }
+
+  const contentType = response.headers.get('content-type') || '';
+  const body = contentType.includes('application/json')
+    ? await response.json().catch(() => ({}))
+    : await response.text();
+
   if (!response.ok) {
-    const error = new Error(body.message || 'The request could not be completed');
+    const message =
+      typeof body === 'object' && body?.message
+        ? body.message
+        : 'The request could not be completed';
+
+    const error = new Error(message);
     error.status = response.status;
     throw error;
   }
+
   return body;
 }
 
@@ -30,13 +58,16 @@ export async function login(email, password) {
     method: 'POST',
     body: JSON.stringify({ email, password })
   });
+
   localStorage.setItem('surroclean_token', result.token);
   localStorage.setItem('surroclean_user', JSON.stringify(result.user));
+
   return result.user;
 }
 
 export async function getCurrentUser() {
   if (!getToken()) return null;
+
   try {
     const result = await apiFetch('/auth/me');
     localStorage.setItem('surroclean_user', JSON.stringify(result.user));
