@@ -1,0 +1,428 @@
+// Data source for EcoSanctuary AI - SIH Problem ID 26195
+
+export const INITIAL_BINS = [
+  {
+    id: "BIN-101",
+    location: "Metro Station North Gate, Sector 4",
+    zone: "Zone A - Commercial",
+    fillLevel: 88,
+    type: "Organic / Wet Waste",
+    status: "Critical",
+    weightKg: 42.5,
+    gasPpm: 68, // Methane / H2S
+    tempC: 31.2,
+    battery: 89,
+    lastEmptied: "14 hours ago",
+    lidStatus: "Closed",
+    compactorActive: false,
+    lat: 28.6139,
+    lng: 77.2090,
+  },
+  {
+    id: "BIN-102",
+    location: "City Central Park East Wing",
+    zone: "Zone B - Public Park",
+    fillLevel: 35,
+    type: "Recyclable / Dry Plastic",
+    status: "Normal",
+    weightKg: 12.8,
+    gasPpm: 12,
+    tempC: 26.5,
+    battery: 94,
+    lastEmptied: "3 hours ago",
+    lidStatus: "Closed",
+    compactorActive: false,
+    lat: 28.6180,
+    lng: 77.2150,
+  },
+  {
+    id: "BIN-103",
+    location: "Apollo Healthcare Zone, Corridor 2",
+    zone: "Zone C - Biomedical & Hospital",
+    fillLevel: 92,
+    type: "Biomedical / Hazardous",
+    status: "Critical",
+    weightKg: 28.4,
+    gasPpm: 95, // High Odor/Biohazard emission
+    tempC: 34.1,
+    battery: 76,
+    lastEmptied: "18 hours ago",
+    lidStatus: "Secured Lock",
+    compactorActive: false,
+    lat: 28.6095,
+    lng: 77.2210,
+  },
+  {
+    id: "BIN-104",
+    location: "Tech Innovation Hub, Block 9",
+    zone: "Zone D - Industrial & IT",
+    fillLevel: 74,
+    type: "E-Waste & Batteries",
+    status: "Warning",
+    weightKg: 38.0,
+    gasPpm: 24,
+    tempC: 28.0,
+    battery: 82,
+    lastEmptied: "8 hours ago",
+    lidStatus: "Closed",
+    compactorActive: false,
+    lat: 28.6250,
+    lng: 77.2020,
+  },
+  {
+    id: "BIN-105",
+    location: "Grand Market Complex, Food Court",
+    zone: "Zone A - Commercial",
+    fillLevel: 96,
+    type: "Organic / Wet Waste",
+    status: "Critical",
+    weightKg: 58.2,
+    gasPpm: 110,
+    tempC: 36.8,
+    battery: 64,
+    lastEmptied: "22 hours ago",
+    lidStatus: "Ajar",
+    compactorActive: true,
+    lat: 28.6165,
+    lng: 77.2280,
+  },
+  {
+    id: "BIN-106",
+    location: "University Campus, Hostel 3",
+    zone: "Zone E - Institutional",
+    fillLevel: 45,
+    type: "Paper & Cardboard",
+    status: "Normal",
+    weightKg: 16.2,
+    gasPpm: 8,
+    tempC: 25.0,
+    battery: 98,
+    lastEmptied: "5 hours ago",
+    lidStatus: "Closed",
+    compactorActive: false,
+    lat: 28.6300,
+    lng: 77.2180,
+  },
+];
+
+export const AI_WASTE_SAMPLES = [
+  {
+    id: "sample-1",
+    name: "Clear Polyethylene (PET) Bottle",
+    category: "Dry / Recyclable",
+    categoryColor: "text-blue-400 bg-blue-500/10 border-blue-500/30",
+    binColor: "bg-blue-600",
+    confidence: 98.4,
+    material: "Polyethylene Terephthalate (PET Type 1)",
+    co2SavedKg: "0.24 kg",
+    pointsReward: 15,
+    guidelines: [
+      "Empty any remaining liquid contents.",
+      "Crush bottle flat to conserve smart bin volume.",
+      "Discard plastic cap in the recyclables hopper.",
+      "Recycled into textile fibers and new food-grade containers."
+    ],
+    decompositionYears: "450 Years",
+    hazardLevel: "Low",
+    icon: "Milk",
+    image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "sample-2",
+    name: "Organic Fruit & Vegetable Peels",
+    category: "Wet / Biodegradable",
+    categoryColor: "text-emerald-400 bg-emerald-500/10 border-emerald-500/30",
+    binColor: "bg-emerald-600",
+    confidence: 99.1,
+    material: "High-Nitrogen Compostable Biomass",
+    co2SavedKg: "0.45 kg",
+    pointsReward: 20,
+    guidelines: [
+      "Ensure no plastic stickers or wraps are attached.",
+      "Deposit into green IoT Composting Stream bin.",
+      "Transferred to local Municipal Bio-Methanation facility.",
+      "Produces organic manure and green CNG fuel."
+    ],
+    decompositionYears: "2 - 4 Weeks",
+    hazardLevel: "Zero",
+    icon: "Apple",
+    image: "https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "sample-3",
+    name: "Lithium-Ion Smartphone Battery",
+    category: "Hazardous / E-Waste",
+    categoryColor: "text-amber-400 bg-amber-500/10 border-amber-500/30",
+    binColor: "bg-amber-600",
+    confidence: 97.2,
+    material: "Cobalt-Lithium Heavy Metal Compound",
+    co2SavedKg: "1.80 kg",
+    pointsReward: 50,
+    guidelines: [
+      "CRITICAL: Do not puncture or expose to high moisture.",
+      "Place in Yellow E-Waste dedicated smart locker.",
+      "Prevents hazardous groundwater contamination.",
+      "Cobalt, Lithium, and Nickel extraction at authorized e-refinery."
+    ],
+    decompositionYears: "Non-Biodegradable (Toxic)",
+    hazardLevel: "High Fire / Toxic Hazard",
+    icon: "BatteryCharging",
+    image: "https://images.unsplash.com/photo-1619725002198-6a689b72f41d?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "sample-4",
+    name: "Corrugated Cardboard Packaging Box",
+    category: "Dry / Recyclable Pulp",
+    categoryColor: "text-cyan-400 bg-cyan-500/10 border-cyan-500/30",
+    binColor: "bg-cyan-600",
+    confidence: 96.8,
+    material: "Unbleached Kraft Paper Fiber",
+    co2SavedKg: "0.62 kg",
+    pointsReward: 15,
+    guidelines: [
+      "Remove adhesive shipping tape and polystyrene peanuts.",
+      "Flatten box to enable smart bin automatic compaction.",
+      "Keep dry to prevent mold growth.",
+      "Can be pulped and recycled up to 7 times."
+    ],
+    decompositionYears: "2 Months",
+    hazardLevel: "Low",
+    icon: "Package",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "sample-5",
+    name: "Disposable Clinical Syringe & Gloves",
+    category: "Biohazard / Biomedical",
+    categoryColor: "text-red-400 bg-red-500/10 border-red-500/30",
+    binColor: "bg-red-600",
+    confidence: 99.6,
+    material: "Contaminated Medical Grade Polymer",
+    co2SavedKg: "0.15 kg",
+    pointsReward: 30,
+    guidelines: [
+      "MANDATORY: Cut needle or place in puncture-proof sharps bin.",
+      "Do not mix with municipal general waste.",
+      "Smart Bin automatically locks and triggers UV-C Sterilization.",
+      "Routed to high-temperature plasma incineration."
+    ],
+    decompositionYears: "Requires Incineration",
+    hazardLevel: "Extreme Biological Risk",
+    icon: "Syringe",
+    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "sample-6",
+    name: "Aluminium Beverage Can",
+    category: "Dry / Metal Recyclable",
+    categoryColor: "text-purple-400 bg-purple-500/10 border-purple-500/30",
+    binColor: "bg-purple-600",
+    confidence: 98.9,
+    material: "Alloy 3004 Aluminium",
+    co2SavedKg: "1.25 kg",
+    pointsReward: 25,
+    guidelines: [
+      "Rinse residue thoroughly.",
+      "Infinitely recyclable without quality degradation.",
+      "Saves 95% energy compared to raw bauxite ore smelting.",
+      "Returns to store shelves in as little as 60 days."
+    ],
+    decompositionYears: "200 - 500 Years",
+    hazardLevel: "Low",
+    icon: "CupSoda",
+    image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80"
+  }
+];
+
+export const FLEET_TRUCKS = [
+  {
+    id: "TRK-01",
+    driver: "Ramesh Sharma",
+    vehicleType: "Electric Eco-Compactor 5T",
+    status: "Active Route",
+    batteryPercent: 82,
+    currentPayloadKg: 3240,
+    maxPayloadKg: 5000,
+    fuelSavedLiters: 48.5,
+    assignedBins: ["BIN-105", "BIN-101", "BIN-103"],
+    routeEfficiency: "94.8%",
+    nextStop: "Grand Market Complex (BIN-105)",
+    etaMinutes: 6,
+  },
+  {
+    id: "TRK-02",
+    driver: "Sunil Kumar",
+    vehicleType: "CNG Bio-Waste Collector",
+    status: "En Route to MRF",
+    batteryPercent: 68,
+    currentPayloadKg: 4600,
+    maxPayloadKg: 5000,
+    fuelSavedLiters: 32.0,
+    assignedBins: ["BIN-104", "BIN-106"],
+    routeEfficiency: "91.2%",
+    nextStop: "Okhla Waste-to-Energy Plant",
+    etaMinutes: 14,
+  },
+  {
+    id: "TRK-03",
+    driver: "Ananya Patel",
+    vehicleType: "Autonomous Rapid Sweeper",
+    status: "Standby / Depo",
+    batteryPercent: 100,
+    currentPayloadKg: 200,
+    maxPayloadKg: 2500,
+    fuelSavedLiters: 65.2,
+    assignedBins: [],
+    routeEfficiency: "98.0%",
+    nextStop: "Central Depot Bay 4",
+    etaMinutes: 0,
+  }
+];
+
+export const CITIZEN_GRIEVANCES = [
+  {
+    id: "GRV-8942",
+    citizenName: "Priya Sundaram",
+    title: "Overflowing Garbage Dump near Community Park",
+    location: "Lane 4, Green Avenue, Sector 12",
+    category: "Illegal Garbage Dumping",
+    severity: "High",
+    status: "Dispatched",
+    timestamp: "28 mins ago",
+    assignedTeam: "Rapid Sanitation Crew #4",
+    ecoRewardAllocated: 50,
+    image: "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=600&q=80",
+    upvotes: 24,
+    timeline: [
+      { status: "Reported with Geo-Tag", time: "10:15 AM", done: true },
+      { status: "AI Severity Verified", time: "10:18 AM", done: true },
+      { status: "Crew Assigned & Dispatched", time: "10:24 AM", done: true },
+      { status: "Sanitized & Verified Resolution", time: "Pending", done: false }
+    ]
+  },
+  {
+    id: "GRV-8939",
+    citizenName: "Arjun Verma",
+    title: "Broken Sensor Lid on Smart Bin #105",
+    location: "Food Court, Grand Market Complex",
+    category: "Hardware Malfunction",
+    severity: "Medium",
+    status: "In Progress",
+    timestamp: "2 hours ago",
+    assignedTeam: "IoT Maintenance Cell",
+    ecoRewardAllocated: 30,
+    image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80",
+    upvotes: 12,
+    timeline: [
+      { status: "Reported with Geo-Tag", time: "08:30 AM", done: true },
+      { status: "AI Severity Verified", time: "08:35 AM", done: true },
+      { status: "Technician Dispatched", time: "09:00 AM", done: true },
+      { status: "Lid Sensor Calibrated", time: "Pending", done: false }
+    ]
+  },
+  {
+    id: "GRV-8920",
+    citizenName: "Kavita Nair",
+    title: "Stagnant Wastewater & Lack of Disinfection",
+    location: "Behind Public Restroom #03, Block B",
+    category: "Sanitation & Hygiene",
+    severity: "Critical",
+    status: "Resolved",
+    timestamp: "5 hours ago",
+    assignedTeam: "Disinfection Squad #2",
+    ecoRewardAllocated: 75,
+    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
+    upvotes: 48,
+    timeline: [
+      { status: "Reported with Geo-Tag", time: "05:00 AM", done: true },
+      { status: "AI Severity Verified", time: "05:05 AM", done: true },
+      { status: "Bio-Enzyme & Disinfection Spray", time: "05:30 AM", done: true },
+      { status: "Resolved & Inspected", time: "06:15 AM", done: true }
+    ]
+  }
+];
+
+export const SANITATION_FACILITIES = [
+  {
+    id: "SAN-01",
+    name: "Smart Public Hygiene Hub #01",
+    location: "Connaught Place, Central Concourse",
+    overallScore: 96,
+    hygieneStatus: "Optimal",
+    lastDisinfected: "12 mins ago",
+    nextCycle: "In 48 mins",
+    uvcStatus: "Active Scheduled (Night Cycle)",
+    odorPpm: 0.08, // Low is clean
+    waterTankPercent: 88,
+    soapDispenserPercent: 74,
+    touchlessFixturesActive: true,
+    footfallToday: 1420,
+    userRating: 4.8,
+  },
+  {
+    id: "SAN-02",
+    name: "Community Sanitation Complex #04",
+    location: "Old Railway Junction, Platform 1 Outskirts",
+    overallScore: 78,
+    hygieneStatus: "Needs Sanitization",
+    lastDisinfected: "3 hours ago",
+    nextCycle: "Overdue (Triggered)",
+    uvcStatus: "Standby",
+    odorPpm: 0.42, // Elevated Odor
+    waterTankPercent: 42,
+    soapDispenserPercent: 22,
+    touchlessFixturesActive: true,
+    footfallToday: 2890,
+    userRating: 3.6,
+  },
+  {
+    id: "SAN-03",
+    name: "Eco-Toilet & Bio-Digester Unit #09",
+    location: "Nehru Botanical Gardens",
+    overallScore: 92,
+    hygieneStatus: "Optimal",
+    lastDisinfected: "45 mins ago",
+    nextCycle: "In 1 hr 15 mins",
+    uvcStatus: "Active",
+    odorPpm: 0.11,
+    waterTankPercent: 95,
+    soapDispenserPercent: 90,
+    touchlessFixturesActive: true,
+    footfallToday: 680,
+    userRating: 4.9,
+  }
+];
+
+export const DAILY_WASTE_TRENDS = [
+  { time: "06:00", wetOrganic: 2.4, dryRecyclable: 1.8, hazardous: 0.2, totalTons: 4.4 },
+  { time: "09:00", wetOrganic: 6.8, dryRecyclable: 4.2, hazardous: 0.6, totalTons: 11.6 },
+  { time: "12:00", wetOrganic: 9.5, dryRecyclable: 6.9, hazardous: 0.8, totalTons: 17.2 },
+  { time: "15:00", wetOrganic: 7.2, dryRecyclable: 5.4, hazardous: 0.5, totalTons: 13.1 },
+  { time: "18:00", wetOrganic: 11.4, dryRecyclable: 8.7, hazardous: 0.9, totalTons: 21.0 },
+  { time: "21:00", wetOrganic: 8.1, dryRecyclable: 5.8, hazardous: 0.4, totalTons: 14.3 },
+  { time: "24:00", wetOrganic: 3.2, dryRecyclable: 2.1, hazardous: 0.1, totalTons: 5.4 },
+];
+
+export const REVENUE_CIRCULAR_ECONOMY = [
+  { month: "Jan", plasticSales: 12.4, compostGenerated: 18.2, energyKwh: 45000, carbonCreditRevenue: 4.2 },
+  { month: "Feb", plasticSales: 14.1, compostGenerated: 19.8, energyKwh: 51000, carbonCreditRevenue: 5.0 },
+  { month: "Mar", plasticSales: 16.8, compostGenerated: 22.4, energyKwh: 58000, carbonCreditRevenue: 6.1 },
+  { month: "Apr", plasticSales: 19.5, compostGenerated: 25.1, energyKwh: 64000, carbonCreditRevenue: 7.4 },
+  { month: "May", plasticSales: 23.2, compostGenerated: 28.9, energyKwh: 72000, carbonCreditRevenue: 8.8 },
+  { month: "Jun", plasticSales: 26.0, compostGenerated: 31.5, energyKwh: 81000, carbonCreditRevenue: 10.2 },
+];
+
+export const CITIZEN_LEADERBOARD = [
+  { rank: 1, name: "Dr. Rohini Mehta", greenPoints: 4850, streakDays: 42, badge: "Master Recycler", avatar: "RM" },
+  { rank: 2, name: "Aakash Banerjee", greenPoints: 4320, streakDays: 38, badge: "Zero Waste Hero", avatar: "AB" },
+  { rank: 3, name: "Siddharth Rao", greenPoints: 3980, streakDays: 29, badge: "Sanitation Champion", avatar: "SR" },
+  { rank: 4, name: "Fatima Zahra", greenPoints: 3540, streakDays: 24, badge: "Eco Guardian", avatar: "FZ" },
+  { rank: 5, name: "Vikram Malhotra", greenPoints: 3190, streakDays: 19, badge: "Green Scout", avatar: "VM" },
+];
+
+export const VOUCHERS = [
+  { id: "VCH-1", title: "Delhi Metro 5-Ride Pass", pointsRequired: 400, category: "Public Transit", discount: "₹150 Value", icon: "Train" },
+  { id: "VCH-2", title: "Municipal Property Tax 5% Rebate", pointsRequired: 1500, category: "Govt Subsidy", discount: "Up to ₹1,000", icon: "Home" },
+  { id: "VCH-3", title: "EcoStore Organic Grocery Coupon", pointsRequired: 600, category: "Sustainable Shopping", discount: "₹250 OFF", icon: "ShoppingBag" },
+  { id: "VCH-4", title: "Free Compost (50kg Bag)", pointsRequired: 300, category: "Gardening & Farm", discount: "100% Free Pickup", icon: "Sprout" },
+];

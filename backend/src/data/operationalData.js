@@ -1,0 +1,5 @@
+export const fleet = [
+  { id: 'TRK-01', driver: 'Ramesh Sharma', vehicleType: 'Electric Eco-Compactor 5T', status: 'Active Route', batteryPercent: 82, currentPayloadKg: 3240, maxPayloadKg: 5000, fuelSavedLiters: 48.5, assignedBins: ['BIN-105', 'BIN-101', 'BIN-103'], routeEfficiency: '94.8%', nextStop: 'Grand Market Complex (BIN-105)', etaMinutes: 6 },
+  { id: 'TRK-02', driver: 'Sunil Kumar', vehicleType: 'CNG Bio-Waste Collector', status: 'En Route to MRF', batteryPercent: 68, currentPayloadKg: 4600, maxPayloadKg: 5000, fuelSavedLiters: 32, assignedBins: ['BIN-104', 'BIN-106'], routeEfficiency: '91.2%', nextStop: 'Okhla Waste-to-Energy Plant', etaMinutes: 14 },
+  { id: 'TRK-03', driver: 'Ananya Patel', vehicleType: 'Autonomous Rapid Sweeper', status: 'Standby / Depo', batteryPercent: 100, currentPayloadKg: 200, maxPayloadKg: 2500, fuelSavedLiters: 65.2, assignedBins: [], routeEfficiency: '98.0%', nextStop: 'Central Depot Bay 4', etaMinutes: 0 }
+];

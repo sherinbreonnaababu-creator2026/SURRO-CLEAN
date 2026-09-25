@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoSanctuary AI - Project Explanation</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.7;
+    }
+    .page {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+      padding: 48px 56px;
+      border-radius: 14px;
+    }
+    h1, h2, h3 {
+      color: #0f172a;
+      margin-top: 28px;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 30px;
+      border-bottom: 2px solid #10b981;
+      padding-bottom: 10px;
+    }
+    h2 {
+      font-size: 24px;
+      color: #0f172a;
+    }
+    p, li {
+      font-size: 15px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .small-note {
+      font-size: 13px;
+      color: #475569;
+      margin-top: 12px;
+    }
+    .section-title {
+      background: #ecfdf5;
+      border-left: 4px solid #10b981;
+      padding: 10px 12px;
+      font-weight: bold;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>EcoSanctuary AI - Smart Waste & Sanitization Management Frontend</h1>
+
+    <div class="section-title">1. Project Overview</div>
+    <p>This project is a smart city frontend dashboard designed to improve urban cleanliness, waste management, and public sanitation. It gives a municipal admin or city worker a single control panel where they can monitor garbage bins, identify overflowing bins, manage route planning for garbage collection trucks, and track public hygiene conditions.</p>
+    <p>The app is built as a frontend prototype for SIH (Smart India Hackathon) and focuses on real-world smart city problems. It uses mock data to simulate IoT sensors, citizen complaints, route planning, waste classification, analytics, and sanitation operations.</p>
+    <p>The main goal of the project is to show how technology can make city services faster, cleaner, and more efficient.</p>
+
+    <div class="section-title">2. Problem Solved</div>
+    <p>In many cities, waste management is still done manually. Common issues include:</p>
+    <ul>
+      <li>bins becoming full without being noticed</li>
+      <li>collection trucks taking inefficient routes</li>
+      <li>unsegregated waste causing pollution</li>
+      <li>citizens having no easy way to report dirty areas</li>
+      <li>poor sanitation in public facilities</li>
+      <li>no proper monitoring of waste trends or impact</li>
+    </ul>
+    <p>This project solves these problems by creating a digital command center for handling waste and sanitation efficiently.</p>
+
+    <div class="section-title">3. Frontend Structure</div>
+    <p>The project is built using React and Vite. It uses reusable components and state to manage different sections of the application. The interface is designed like a futuristic smart-city dashboard with dark theme, green/cyan accents, glass panels, KPI cards, charts, and role-based navigation.</p>
+
+    <div class="section-title">4. Detailed Features</div>
+
+    <h2>Feature 1: Navigation Bar and Role Switching</h2>
+    <p>The top navigation bar acts like a smart-city home shell. It contains the app logo, navigation tabs, role switcher, and critical alerts. Different personas such as admin, citizen, driver, and inspector can operate within the same system.</p>
+
+    <h2>Feature 2: Command Center Dashboard</h2>
+    <p>This is the main landing screen. It provides a quick summary of cleanliness, smart bins, AI accuracy, fleet efficiency, and sanitation compliance. It is designed to help administrators see system health at a glance.</p>
+
+    <h2>Feature 3: AI Waste Classifier</h2>
+    <p>This section simulates a vision model for waste segregation. Users can select sample waste items, upload custom images, and scan them to identify categories such as wet waste, dry recyclable waste, e-waste, or hazardous waste. The app then shows confidence scores and reward points for correct segregation.</p>
+
+    <h2>Feature 4: Smart Bin Monitoring System</h2>
+    <p>This is the IoT bin management feature. It displays location, fill percentage, status, gas level, temperature, and battery. Users can simulate sensor data, trigger compaction, and lock bins in emergency cases. This helps detect dangerous conditions such as overfull bins or gas buildup.</p>
+
+    <h2>Feature 5: Route Optimization and Green Fleet Management</h2>
+    <p>This section presents waste collection route planning. Trucks are assigned priorities based on bin fill levels. Users can mark bins as collected to reduce waste and improve route efficiency. The system emphasizes reduced fuel use and lower carbon emissions.</p>
+
+    <h2>Feature 6: Citizen Portal and Grievance Reporting</h2>
+    <p>Citizens can report local sanitation problems, choose issue category and priority, and submit a complaint. Each valid report earns GreenPoints. The portal also contains a reward market and leaderboard to encourage public participation.</p>
+
+    <h2>Feature 7: Sanitization Monitor</h2>
+    <p>This section tracks hygiene in public facilities. It monitors water tank levels, soap levels, odor, footfall, and cleanliness score. It can trigger UV-C disinfection cycles and allows user feedback to judge overall facility quality.</p>
+
+    <h2>Feature 8: Analytics Dashboard</h2>
+    <p>The analytics page shows charts for waste inflow, recycling distribution, landfill diversion, revenue generation, and carbon savings. It turns data into actionable information for city leaders.</p>
+
+    <h2>Feature 9: Alerts and Notifications</h2>
+    <p>The app uses toast notifications and status updates to create a responsive experience. These keep the user informed of critical events, report success, fleet dispatches, and report exports.</p>
+
+    <div class="section-title">5. Learning Value</div>
+    <p>This project helps a student learn multiple frontend and software engineering concepts, including React components, state management, conditional rendering, forms, charts, notification handling, and product design. It is a strong beginner-to-intermediate project because it combines real-world problem solving with UI/UX design.</p>
+
+    <div class="section-title">6. Final Summary</div>
+    <p>EcoSanctuary AI is a smart city waste and sanitation dashboard that uses modern frontend technology to improve cleanliness in urban environments. It integrates smart bin monitoring, AI waste sorting, route optimization, citizen complaints, sanitation tracking, and analytics dashboards. Even though it is a frontend prototype, it effectively communicates the full vision of a real smart-city system.</p>
+
+    <p class="small-note">Created for SIH project explanation and presentation use.</p>
+  </div>
+</body>
+</html>
