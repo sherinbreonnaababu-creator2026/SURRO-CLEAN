@@ -49,10 +49,11 @@ const { token, user } = await response.json();
 
 Citizen reports use `POST /api/reports`; leaderboard data uses `GET /api/users/leaderboard`; and cleaning staff use `GET/PATCH /api/staff/tasks`. Set `FRONTEND_URL` to a comma-separated list of allowed Vite origins when they differ from the defaults.
 
-## Deploy to Render
+## Deploy with Vercel and Render
 
-1. In the Render Dashboard, choose **New + > Blueprint**, connect this GitHub repository, and select the `main` branch. Render reads `render.yaml` to create the API and static site, then redeploys them on each commit to `main`.
-2. When prompted, enter `MONGODB_URI` for a MongoDB Atlas database and strong values for `ADMIN_PASSWORD`, `STAFF_PASSWORD`, and `STUDENT_PASSWORD`. Render generates `JWT_SECRET` automatically. Do not use the local `127.0.0.1` MongoDB URI on Render.
-3. In MongoDB Atlas, allow the API service's outbound IP addresses under **Network Access**. Do not allow all IP addresses as a shortcut.
+1. Import this GitHub repository into Vercel and deploy the Vite frontend. Vercel uses `vercel.json`; use the repository root as the project root and note the deployed site URL.
+2. In Render, choose **New + > Blueprint**, connect this repository on `main`, and apply `render.yaml` to deploy the API. Enter the Vercel site origin for `FRONTEND_URL`, an Atlas connection string for `MONGODB_URI`, and strong values for the three role passwords. Render generates `JWT_SECRET` automatically.
+3. In MongoDB Atlas, allow the Render API service's outbound IP addresses under **Network Access**. Do not use the local `127.0.0.1` URI or allow all IP addresses as a shortcut.
+4. In Vercel project settings, set `VITE_API_URL` to the Render API's public URL followed by `/api`, then redeploy the frontend.
 
-The Blueprint wires the frontend to the API and configures API CORS between the two Render services. The API uses Render's free plan, which may sleep when idle. Email-only Gmail login is demo access and does not verify Gmail ownership.
+Vercel deploys the frontend on GitHub pushes; Render auto-deploys the API from `main`. Render's free API plan may sleep when idle. Email-only Gmail login is demo access and does not verify Gmail ownership.
