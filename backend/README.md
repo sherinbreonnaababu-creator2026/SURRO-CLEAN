@@ -49,11 +49,14 @@ const { token, user } = await response.json();
 
 Citizen reports use `POST /api/reports`; leaderboard data uses `GET /api/users/leaderboard`; and cleaning staff use `GET/PATCH /api/staff/tasks`. Set `FRONTEND_URL` to a comma-separated list of allowed Vite origins when they differ from the defaults.
 
-## Deploy with Vercel and Render
+## Deploy frontend and API to Vercel
 
-1. Import this GitHub repository into Vercel and deploy the Vite frontend. Vercel uses `vercel.json`; use the repository root as the project root and note the deployed site URL.
-2. In Render, choose **New + > Blueprint**, connect this repository on `main`, and apply `render.yaml` to deploy the API. Enter the Vercel site origin for `FRONTEND_URL`, an Atlas connection string for `MONGODB_URI`, and strong values for the three role passwords. Render generates `JWT_SECRET` automatically.
-3. In MongoDB Atlas, allow the Render API service's outbound IP addresses under **Network Access**. Do not use the local `127.0.0.1` URI or allow all IP addresses as a shortcut.
-4. In Vercel project settings, set `VITE_API_URL` to the Render API's public URL followed by `/api`, then redeploy the frontend.
+The repository uses two Vercel projects connected to the same GitHub repository:
 
-Vercel deploys the frontend on GitHub pushes; Render auto-deploys the API from `main`. Render's free API plan may sleep when idle. Email-only Gmail login is demo access and does not verify Gmail ownership.
+1. The frontend project uses the repository root and `vercel.json`.
+2. Create a second Vercel project named `surro-clean-api`, set its root directory to `backend`, and select the Express framework. Vercel deploys the exported Express app as a Function.
+3. Set these variables in the API project's Production and Preview environments: `MONGODB_URI`, `JWT_SECRET` (at least 32 characters), `ADMIN_PASSWORD`, `STAFF_PASSWORD`, `STUDENT_PASSWORD`, and `FRONTEND_URL` (the frontend's exact production origin, such as `https://surro-clean-flax.vercel.app`).
+4. In the frontend project's environment settings, set `VITE_API_URL` to the API project's deployment URL followed by `/api`, then redeploy the frontend.
+5. Configure MongoDB Atlas Network Access for the API's outbound connections. Do not use the local `127.0.0.1` URI or allow all IP addresses as a shortcut.
+
+Both Vercel projects can auto-deploy from `main`. Email-only Gmail login is demo access and does not verify Gmail ownership.

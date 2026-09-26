@@ -23,6 +23,10 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json({ limit: '2mb' }));
+app.use(async (_req, _res, next) => {
+  await connectDatabase();
+  next();
+});
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok', service: 'surroclean-backend', timestamp: new Date().toISOString() }));
 app.get('/api/fleet', (req, res) => res.json({ trucks: fleet }));
@@ -47,5 +51,5 @@ async function start() {
   }
 }
 
-if (process.env.NODE_ENV !== 'test') start();
+if (process.env.NODE_ENV !== 'test' && process.env.VERCEL !== '1') start();
 export default app;
