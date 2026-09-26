@@ -1,6 +1,8 @@
-const API_URL = (
+const apiUrl = new URL(
   import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000/api'
-).replace(/\/$/, '');
+);
+if (apiUrl.pathname === '/') apiUrl.pathname = '/api';
+const API_URL = apiUrl.toString().replace(/\/$/, '');
 
 export function getToken() {
   return localStorage.getItem('surroclean_token');
