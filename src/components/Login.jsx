@@ -39,26 +39,26 @@ export default function Login({ onLogin }) {
         <div className="mb-6">
           <p className="text-xs uppercase tracking-[0.2em] font-bold text-emerald-400">Secure access</p>
           <h2 className="text-xl font-bold text-white mt-2">Sign in to your workspace</h2>
-          <p className="text-sm text-slate-400 mt-1">Use the credentials assigned to your role.</p>
+          <p className="text-sm text-slate-400 mt-1">Enter any Gmail address for student demo access. Gmail ownership is not verified.</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <label className="block">
             <span className="text-xs font-semibold text-slate-300">Email address</span>
             <div className="relative mt-1.5">
               <Mail className="absolute left-3 top-3.5 w-4 h-4 text-slate-500" />
-              <input required type="email" autoComplete="username" value={email} onChange={(event) => setEmail(event.target.value)} className="w-full rounded-xl border border-slate-700 bg-slate-900/80 py-3 pl-10 pr-3 text-sm text-white outline-none focus:border-emerald-400" placeholder="you@surroclean.local" />
+              <input required type="email" autoComplete="username" value={email} onChange={(event) => setEmail(event.target.value)} className="w-full rounded-xl border border-slate-700 bg-slate-900/80 py-3 pl-10 pr-3 text-sm text-white outline-none focus:border-emerald-400" placeholder="you@gmail.com" />
             </div>
           </label>
           <label className="block">
-            <span className="text-xs font-semibold text-slate-300">Password</span>
+            <span className="text-xs font-semibold text-slate-300">Password (optional)</span>
             <div className="relative mt-1.5">
               <LockKeyhole className="absolute left-3 top-3.5 w-4 h-4 text-slate-500" />
-              <input required type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} className="w-full rounded-xl border border-slate-700 bg-slate-900/80 py-3 pl-10 pr-3 text-sm text-white outline-none focus:border-emerald-400" placeholder="Enter your password" />
+              <input type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} className="w-full rounded-xl border border-slate-700 bg-slate-900/80 py-3 pl-10 pr-3 text-sm text-white outline-none focus:border-emerald-400" placeholder="Enter your password" />
             </div>
           </label>
           {error && <p role="alert" className="flex items-center gap-2 rounded-xl border border-rose-500/30 bg-rose-500/10 p-3 text-xs text-rose-300"><AlertCircle className="w-4 h-4 shrink-0" />{error}</p>}
           <button disabled={isSubmitting} className="w-full rounded-xl bg-emerald-500 py-3 text-sm font-bold text-slate-950 transition hover:bg-emerald-400 disabled:cursor-wait disabled:opacity-60">
-            {isSubmitting ? 'Authenticating...' : 'Sign in securely'}
+            {isSubmitting ? 'Authenticating...' : password ? 'Sign in securely' : 'Continue with Gmail'}
           </button>
         </form>
         <div className="mt-6 grid grid-cols-3 gap-2 text-center text-[10px] text-slate-500">
