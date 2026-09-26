@@ -54,7 +54,7 @@ Citizen reports use `POST /api/reports`; leaderboard data uses `GET /api/users/l
 The repository uses two Vercel projects connected to the same GitHub repository:
 
 1. The frontend project uses the repository root; Vercel detects Vite from the root `package.json`.
-2. Create a second Vercel project named `surro-clean-api`, set its root directory to `backend`, and select the Express framework. Vercel deploys the exported Express app as a Function.
+2. Create a second Vercel project named `surro-clean-api`, set its root directory to `backend`, and select the Express framework. The backend-specific [vercel.json](vercel.json) uses no static output directory, so Vercel deploys the exported Express app as a Function.
 3. Set these variables in the API project's Production and Preview environments: `MONGODB_URI`, `JWT_SECRET` (at least 32 characters), `ADMIN_PASSWORD`, `STAFF_PASSWORD`, `STUDENT_PASSWORD`, and `FRONTEND_URL` (the frontend's exact production origin, such as `https://surro-clean-flax.vercel.app`).
 4. In the frontend project's environment settings, set `VITE_API_URL` to the API project's deployment URL followed by `/api`, then redeploy the frontend.
 5. Configure MongoDB Atlas Network Access for the API's outbound connections. Do not use the local `127.0.0.1` URI or allow all IP addresses as a shortcut.
